@@ -1,4 +1,3 @@
-import './App.css';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from './apollo';
 import Deck from './Deck';
@@ -11,13 +10,20 @@ import {
     Typography,
     // MenuIcon,
 } from '@mui/material';
+import { Route, Switch } from 'react-router';
+import PokemonCatalog from './routes/PokemonCatalog';
+import PokemonDetailPage from './routes/PokemonDetailPage';
 
 function App() {
     const client = useApollo();
 
     return (
         <ApolloProvider client={client}>
-            <AppBar position="static">
+            <Switch>
+                <Route exact path="/:id(\d+)" component={PokemonDetailPage} />
+                <Route path="/" component={PokemonCatalog} />
+            </Switch>
+            {/* <AppBar position="static">
                 <Toolbar>
                     <Typography
                         variant="h6"
@@ -38,7 +44,7 @@ function App() {
                 </Toolbar>
             </AppBar>
 
-            <Deck />
+            <Deck /> */}
         </ApolloProvider>
     );
 }

@@ -1,10 +1,10 @@
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
 import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { PokemonQuery, PokemonQueryVariables } from './generated/PokemonQuery';
 
 const POKEMON_QUERY = gql`
-    query PokemonQuery($limit: Int = 10, $offset: Int = 10) {
+    query PokemonQuery($limit: Int = 20, $offset: Int = 0) {
         pokemon_v2_pokemon(limit: $limit, offset: $offset) {
             id
             name
@@ -19,7 +19,7 @@ const POKEMON_QUERY = gql`
     }
 `;
 
-function Deck() {
+const Deck = () => {
     const [offset, setOffset] = useState(0);
     const [getData, { data, loading }] = useLazyQuery<
         PokemonQuery,
@@ -50,6 +50,6 @@ function Deck() {
             ) : null}
         </div>
     );
-}
+};
 
 export default Deck;

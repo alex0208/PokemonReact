@@ -1,4 +1,5 @@
 import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { PokemonQuery, PokemonQueryVariables } from './generated/PokemonQuery';
 
@@ -35,14 +36,15 @@ function Deck() {
 
     return (
         <div>
-            <button
+            <Button
+                variant="contained"
                 onClick={() => {
                     getData();
                     setOffset((o) => o + 20);
                 }}
             >
-                bum
-            </button>
+                Fetch
+            </Button>
             {data && !loading ? (
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             ) : null}

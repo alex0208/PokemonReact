@@ -1,23 +1,11 @@
 import { gql, useLazyQuery } from '@apollo/client';
-import { Button } from '@mui/material';
+import { Button, Card } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { PokemonQuery, PokemonQueryVariables } from './generated/PokemonQuery';
-
-const POKEMON_QUERY = gql`
-    query PokemonQuery($limit: Int = 20, $offset: Int = 0) {
-        pokemon_v2_pokemon(limit: $limit, offset: $offset) {
-            id
-            name
-            height
-            weight
-            pokemon_v2_pokemonabilities {
-                pokemon_v2_ability {
-                    name
-                }
-            }
-        }
-    }
-`;
+import {
+    PokemonQuery,
+    PokemonQueryVariables,
+} from './graphql/generated/PokemonQuery';
+import { POKEMON_QUERY } from './graphql/queries/pokemon';
 
 const Deck = () => {
     const [offset, setOffset] = useState(0);
@@ -48,6 +36,7 @@ const Deck = () => {
             {data && !loading ? (
                 <pre>{JSON.stringify(data, null, 2)}</pre>
             ) : null}
+            <Card></Card>
         </div>
     );
 };

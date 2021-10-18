@@ -22,15 +22,22 @@ import {
     PokemonQueryVariables,
 } from '../graphql/generated/PokemonQuery';
 import { POKEMON_QUERY } from '../graphql/queries/pokemon';
+import Header from '../components/Header';
 
 const PokemonCatalog: FC<RouteComponentProps> = () => {
     const [pageSize, setPageSize] = useState(20);
     const [currentPage, setCurrrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState('');
+
     const [getData, { data, loading }] = useLazyQuery<
         PokemonQuery,
         PokemonQueryVariables
     >(POKEMON_QUERY, {
-        variables: { limit: pageSize, offset: pageSize * (currentPage - 1) },
+        variables: {
+            limit: pageSize,
+            offset: pageSize * (currentPage - 1),
+            _ilike: `${searchTerm}%`,
+        },
     });
 
     const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
@@ -42,8 +49,13 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
         console.log(data);
     }, []);
 
+    useEffect(() => {
+        setCurrrentPage(1);
+    }, [searchTerm]);
+
     return (
         <>
+            <Header setSearchTerm={setSearchTerm} />
             <Grid
                 container
                 alignItems="center"

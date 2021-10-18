@@ -5,6 +5,7 @@ export const POKEMON_QUERY = gql`
         $limit: Int = 20
         $offset: Int = 0
         $_ilike: String = "%"
+        $order_by: [pokemon_v2_pokemon_order_by!] = { name: asc }
     ) {
         pokemon_v2_pokemon(
             limit: $limit
@@ -19,6 +20,7 @@ export const POKEMON_QUERY = gql`
                     }
                 ]
             }
+            order_by: $order_by
         ) {
             id
             name

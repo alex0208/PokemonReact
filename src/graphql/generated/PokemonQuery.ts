@@ -42,4 +42,5 @@ export interface PokemonQuery {
 export interface PokemonQueryVariables {
   limit?: number | null;
   offset?: number | null;
+  _ilike?: string | null;
 }

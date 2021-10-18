@@ -23,11 +23,15 @@ import {
 } from '../graphql/generated/PokemonQuery';
 import { POKEMON_QUERY } from '../graphql/queries/pokemon';
 import Header from '../components/Header';
+import { SORTING_DIRECTION } from '../common/constants/sort';
+import { order_by } from '../graphql/generated/globalTypes';
 
 const PokemonCatalog: FC<RouteComponentProps> = () => {
     const [pageSize, setPageSize] = useState(20);
     const [currentPage, setCurrrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
+    const orderBy = useState(SORTING_DIRECTION.NAME);
+    const sortingDirection = useState(order_by.asc);
 
     const [getData, { data, loading }] = useLazyQuery<
         PokemonQuery,
@@ -37,6 +41,8 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
             limit: pageSize,
             offset: pageSize * (currentPage - 1),
             _ilike: `${searchTerm}%`,
+            // order_by: JSON.parse('{"height": "asc"}'),
+            order_by: JSON.parse(`{"${orderBy[0]}": "${sortingDirection[0]}"}`),
         },
     });
 
@@ -53,9 +59,28 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
         setCurrrentPage(1);
     }, [searchTerm]);
 
+    useEffect(() => {
+        console.log(sortingDirection[0]);
+    }, [sortingDirection[0]]);
+
     return (
         <>
-            <Header setSearchTerm={setSearchTerm} />
+            <Header
+                setSearchTerm={setSearchTerm}
+                // sortingDirection={sortingDirection}
+                orderBy={orderBy}
+                sortingDirection={sortingDirection}
+                pageSize={pageSize}
+                setPageSize={setPageSize}
+            />
+
+            <Pagination
+                count={currentPage + 2}
+                siblingCount={3}
+                boundaryCount={2}
+                page={currentPage}
+                onChange={handlePageChange}
+            />
             <Grid
                 container
                 alignItems="center"

@@ -11,6 +11,7 @@ import {
 
 import { Box, styled } from '@mui/system';
 import { SyntheticEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { PokemonQuery_pokemon_v2_pokemon_pokemon_v2_pokemonabilities } from '../graphql/generated/PokemonQuery';
 
 interface Props {
@@ -31,9 +32,9 @@ const PokemonCard = ({
     return (
         <PCard sx={{ maxWidth: 345 }}>
             <CardActionArea
-                onClick={() => {
-                    console.log(id);
-                }}
+            // onClick={() => {
+            //     console.log(id);
+            // }}
             >
                 <CardMedia
                     component="img"
@@ -75,11 +76,11 @@ const PokemonCard = ({
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            {/* <CardActions>
-                <Button size="small" color="primary">
+            <CardActions>
+                <Button component={Link} to={'/' + id}>
                     More
                 </Button>
-            </CardActions> */}
+            </CardActions>
         </PCard>
     );
 };

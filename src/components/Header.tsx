@@ -38,9 +38,7 @@ const Header = ({
     pageSize,
     setPageSize,
 }: any) => {
-    const handleChange = (
-        e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-    ) => {
+    const handleChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         e.preventDefault();
         setSearchTerm(e.target.value);
     };
@@ -56,7 +54,7 @@ const Header = ({
     };
 
     return (
-        <AppBar position="static" sx={{ mb: 8 }}>
+        <AppBar position="static" sx={{ mb: 3 }}>
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Pokemon
@@ -94,63 +92,41 @@ const Header = ({
                     <DialogTitle>Search settings</DialogTitle>
                     <DialogContent sx={{ minWidth: 300 }}>
                         <FormControl fullWidth sx={{ mt: 3 }}>
-                            <InputLabel id="demo-simple-select-label">
-                                Sort by
-                            </InputLabel>
+                            <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={orderBy}
                                 label="Sort by"
-                                onChange={(e: SelectChangeEvent<string>) =>
-                                    setOrderBy(e.target.value)
-                                }
+                                onChange={(e: SelectChangeEvent<string>) => setOrderBy(e.target.value)}
                             >
-                                <MenuItem value={SORTING_DIRECTION.NAME}>
-                                    Name
-                                </MenuItem>
-                                <MenuItem value={SORTING_DIRECTION.HEIGHT}>
-                                    Height
-                                </MenuItem>
-                                <MenuItem value={SORTING_DIRECTION.WEIGHT}>
-                                    Weight
-                                </MenuItem>
+                                <MenuItem value={SORTING_DIRECTION.NAME}>Name</MenuItem>
+                                <MenuItem value={SORTING_DIRECTION.HEIGHT}>Height</MenuItem>
+                                <MenuItem value={SORTING_DIRECTION.WEIGHT}>Weight</MenuItem>
                             </Select>
                         </FormControl>
 
                         <FormControl fullWidth sx={{ mt: 3 }}>
-                            <InputLabel id="demo-simple-select-label">
-                                Sorting direction
-                            </InputLabel>
+                            <InputLabel id="demo-simple-select-label">Sorting direction</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={sortingDirection}
                                 label="Sort direction"
-                                onChange={(e: SelectChangeEvent<string>) =>
-                                    setSortingDirection(e.target.value)
-                                }
+                                onChange={(e: SelectChangeEvent<string>) => setSortingDirection(e.target.value)}
                             >
-                                <MenuItem value={order_by.asc}>
-                                    Ascending
-                                </MenuItem>
-                                <MenuItem value={order_by.desc}>
-                                    Descending
-                                </MenuItem>
+                                <MenuItem value={order_by.asc}>Ascending</MenuItem>
+                                <MenuItem value={order_by.desc}>Descending</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl fullWidth sx={{ mt: 3 }}>
-                            <InputLabel id="demo-simple-select-label">
-                                Page size
-                            </InputLabel>
+                            <InputLabel id="demo-simple-select-label">Page size</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={pageSize}
                                 label="Sort direction"
-                                onChange={(e: SelectChangeEvent<number>) =>
-                                    setPageSize(e.target.value)
-                                }
+                                onChange={(e: SelectChangeEvent<number>) => setPageSize(e.target.value)}
                             >
                                 <MenuItem value={10}>10</MenuItem>
                                 <MenuItem value={20}>20</MenuItem>

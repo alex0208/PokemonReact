@@ -11,8 +11,6 @@ import {
     Button,
     DialogActions,
     DialogContent,
-    DialogContentText,
-    TextField,
     FormControl,
     InputLabel,
     MenuItem,
@@ -21,16 +19,15 @@ import {
 } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { SORTING_DIRECTION } from '../common/constants/sort';
 import { order_by } from '../graphql/generated/globalTypes';
 
-interface Props {
-    setSearchTerm: Dispatch<SetStateAction<string>>;
-    // searchingDirection: any
-}
+// interface Props {
+// setSearchTerm: Dispatch<SetStateAction<string>>;
+// searchingDirection: any
+// }
 
-// const Header = ({ setSearchTerm, sortingDirection }: Props) => {
 const Header = ({
     searchTerm: [searchTerm, setSearchTerm],
     orderBy: [orderBy, setOrderBy],

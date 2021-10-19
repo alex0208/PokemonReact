@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 
 import { Box, styled } from '@mui/system';
-import { SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { PokemonQuery_pokemon_v2_pokemon_pokemon_v2_pokemonabilities } from '../graphql/generated/PokemonQuery';
 
@@ -25,11 +24,7 @@ interface Props {
 const PokemonCard = ({ id = 5, name = 'Pokemon', weight, height, pokemon_v2_pokemonabilities: abilities }: Props) => {
     return (
         <PCard sx={{ maxWidth: 345 }}>
-            <CardActionArea
-            // onClick={() => {
-            //     console.log(id);
-            // }}
-            >
+            <CardActionArea>
                 <CardMedia
                     component="img"
                     height="250"

@@ -13,7 +13,7 @@ import {
     List,
     ListItem,
 } from '@mui/material';
-import { FC, SyntheticEvent, useState } from 'react';
+import { FC } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { PokemonDetails, PokemonDetailsVariables } from '../graphql/generated/PokemonDetails';
 import { POKEMON_DETAIL_QUERY } from '../graphql/queries/pokemonDetail';
@@ -27,39 +27,21 @@ interface MatchParams {
 const PokemonDetailPage: FC<Props> = ({ match }) => {
     const pokemonId: number = +match.params.id;
 
-    const { data, loading } = useQuery<PokemonDetails, PokemonDetailsVariables>(POKEMON_DETAIL_QUERY, {
+    const { data } = useQuery<PokemonDetails, PokemonDetailsVariables>(POKEMON_DETAIL_QUERY, {
         variables: { id: pokemonId },
     });
     const pokemonData = data?.pokemon_v2_pokemon[0];
 
-    const [value, setValue] = useState('1');
-
-    const handleChange = (event: SyntheticEvent, newValue: string) => {
-        setValue(newValue);
-    };
-
-    const breadcrumbs = [
-        <Link
-            underline="hover"
-            key="1"
-            color="inherit"
-            href="/"
-            // onClick={}
-        >
-            Catalog
-        </Link>,
-
-        <Typography key="2" color="text.primary">
-            {pokemonData?.name}
-        </Typography>,
-    ];
-
-    console.log(pokemonData);
-
     return (
         <Container maxWidth="sm" sx={{ my: 10 }}>
             <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-                {breadcrumbs}
+                <Link underline="hover" key="1" color="inherit" href="/">
+                    Catalog
+                </Link>
+
+                <Typography key="2" color="text.primary">
+                    {pokemonData?.name}
+                </Typography>
             </Breadcrumbs>
             <Card sx={{ mt: 5 }}>
                 <Stack>

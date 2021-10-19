@@ -1,22 +1,5 @@
-import {
-    AppBar,
-    Toolbar,
-    Typography,
-    IconButton,
-    Grid,
-    Card,
-    Button,
-    CardActionArea,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Pagination,
-    Box,
-    CircularProgress,
-    Skeleton,
-} from '@mui/material';
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import { RouteComponentProps } from 'react-router';
+import { Grid, Box, CircularProgress, Skeleton } from '@mui/material';
+import { useEffect, useState } from 'react';
 import PokemonCard from '../components/PokemonCard';
 import { useLazyQuery } from '@apollo/client';
 import { PokemonQuery, PokemonQueryVariables } from '../graphql/generated/PokemonQuery';
@@ -28,7 +11,7 @@ import useLocalStorage from '../common/hooks/useLocalStorage';
 import { styled } from '@mui/system';
 import CustomPagination from '../components/CustomPagination';
 
-const PokemonCatalog: FC<RouteComponentProps> = () => {
+const PokemonCatalog = () => {
     const [pageSize, setPageSize] = useLocalStorage('pageSize', 20);
     const [currentPage, setCurrrentPage] = useState(1);
     const searchTerm = useLocalStorage('searchTerm', '');
@@ -40,34 +23,23 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
             limit: pageSize,
             offset: pageSize * (currentPage - 1),
             _ilike: `${searchTerm[0]}%`,
-            // order_by: JSON.parse('{"height": "asc"}'),
             order_by: JSON.parse(`{"${orderBy[0]}": "${sortingDirection[0]}"}`),
         },
     });
 
-    const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
-        setCurrrentPage(value);
-        window.scrollTo(0, 0);
-    };
-
     useEffect(() => {
         getData();
-        console.log(data);
-    }, []);
+    }, [getData]);
 
     useEffect(() => {
         setCurrrentPage(1);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchTerm[0]]);
-
-    useEffect(() => {
-        console.log(sortingDirection[0]);
-    }, [sortingDirection[0]]);
 
     return (
         <>
             <Header
                 searchTerm={searchTerm}
-                // sortingDirection={sortingDirection}
                 orderBy={orderBy}
                 sortingDirection={sortingDirection}
                 pageSize={pageSize}

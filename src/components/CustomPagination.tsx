@@ -1,5 +1,5 @@
 import { Pagination } from '@mui/material';
-import { ChangeEvent, Dispatch, SetStateAction, useEffect } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 
 interface Props {
     currentPage: number;
@@ -8,17 +8,10 @@ interface Props {
 
 const CustomPagination = ({ currentPage, setCurrentPage }: Props) => {
     const handlePageChange = (e: ChangeEvent<unknown>, value: number) => {
-        console.log(value);
-        console.log(currentPage);
-
         setCurrentPage(value);
         window.scrollTo(0, 0);
-        console.log(currentPage);
     };
 
-    useEffect(() => {
-        console.log(currentPage);
-    }, [currentPage]);
     return (
         <Pagination
             sx={{ my: 3 }}

@@ -56,11 +56,13 @@ const PokemonCatalog = () => {
             {
                 <Grid container alignItems="center" justifyContent="flex-start" spacing={3} px={3}>
                     {data
-                        ? Array.from(data?.pokemon_v2_pokemon).map((pokemon, index) => (
-                              <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
-                                  <PokemonCard {...pokemon} />
-                              </Grid>
-                          ))
+                        ? Array.from(data?.pokemon_v2_pokemon).map((pokemon, index) => {
+                              return (
+                                  <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
+                                      <PokemonCard {...pokemon} />
+                                  </Grid>
+                              );
+                          })
                         : [...Array(pageSize)].map((n, index) => (
                               <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
                                   <Skeleton variant="rectangular" height={250} />

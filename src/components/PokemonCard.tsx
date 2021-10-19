@@ -18,10 +18,16 @@ interface Props {
     name: string;
     height: number | null;
     weight: number | null;
-    pokemon_v2_pokemonabilities: PokemonQuery_pokemon_v2_pokemon_pokemon_v2_pokemonabilities[];
+    pokemon_v2_pokemonabilities?: PokemonQuery_pokemon_v2_pokemon_pokemon_v2_pokemonabilities[];
 }
 
-const PokemonCard = ({ id = 5, name = 'Pokemon', weight, height, pokemon_v2_pokemonabilities: abilities }: Props) => {
+const PokemonCard = ({
+    id = 5,
+    name = 'Pokemon',
+    weight,
+    height,
+    pokemon_v2_pokemonabilities: abilities = [],
+}: Props) => {
     return (
         <PCard sx={{ maxWidth: 345 }}>
             <CardActionArea>

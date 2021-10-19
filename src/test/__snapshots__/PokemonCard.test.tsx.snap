@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="MuiPaper-root-jqRKNJ kHBPTd MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root-haibrP BCqEU MuiCard-root sc-crrszt OERGE"
+>
+  <button
+    className="MuiButtonBase-root-JTLGk xjigV MuiButtonBase-root MuiCardActionArea-root-dPTAie dResrh MuiCardActionArea-root"
+    disabled={false}
+    onBlur={[Function]}
+    onContextMenu={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <img
+      alt="charmeleon"
+      className="MuiCardMedia-root-iQlcPv iIHDVI MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
+      height="250"
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png"
+    />
+    <div
+      className="MuiCardContent-root-gAaESu jGCBVS MuiCardContent-root"
+    >
+      <div
+        className="MuiTypography-root-bWuLxc dgkYgr MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
+      >
+        Charmeleon
+      </div>
+      <div
+        className="MuiTypography-root-bWuLxc iTBnDU MuiTypography-root MuiTypography-body1"
+      >
+        Height:
+        <div
+          className="sc-bdfBQB sc-iqHYmW dMAMKp MuiBox-root"
+        >
+          11
+        </div>
+      </div>
+      <div
+        className="MuiTypography-root-bWuLxc iTBnDU MuiTypography-root MuiTypography-body1"
+      >
+        Weight:
+        <div
+          className="sc-bdfBQB sc-iqHYmW dMAMKp MuiBox-root"
+        >
+          190
+        </div>
+      </div>
+      <div
+        className="MuiTypography-root-bWuLxc iTBnDU MuiTypography-root MuiTypography-body1"
+      >
+        Abilities:
+        <div
+          className="sc-bdfBQB sc-iqHYmW dMAMKp MuiBox-root"
+        >
+          
+        </div>
+      </div>
+    </div>
+    <span
+      className="MuiCardActionArea-focusHighlight-jRDNLQ dtaseF MuiCardActionArea-focusHighlight"
+    />
+  </button>
+  <div
+    className="MuiCardActions-root-iRhwuq cfBnLq MuiCardActions-root MuiCardActions-spacing"
+  >
+    <a
+      className="MuiButtonBase-root-JTLGk xjigV MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root MuiButton-root-gxQIQh HSLTP"
+      href="/5"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+    >
+      More
+    </a>
+  </div>
+</div>
+`;

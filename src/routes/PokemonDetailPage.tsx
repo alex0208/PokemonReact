@@ -13,7 +13,6 @@ import {
     List,
     ListItem,
 } from '@mui/material';
-import { FC } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { PokemonDetails, PokemonDetailsVariables } from '../graphql/generated/PokemonDetails';
 import { POKEMON_DETAIL_QUERY } from '../graphql/queries/pokemonDetail';
@@ -24,7 +23,7 @@ interface MatchParams {
     id: string;
 }
 
-const PokemonDetailPage: FC<Props> = ({ match }) => {
+const PokemonDetailPage = ({ match }: Props) => {
     const pokemonId: number = +match.params.id;
 
     const { data } = useQuery<PokemonDetails, PokemonDetailsVariables>(POKEMON_DETAIL_QUERY, {

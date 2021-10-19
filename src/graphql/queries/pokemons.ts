@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const POKEMON_QUERY = gql`
-    query PokemonQuery(
+    query GetPokemonCollection(
         $limit: Int = 20
         $offset: Int = 0
         $_ilike: String = "%"

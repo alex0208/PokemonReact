@@ -159,8 +159,7 @@ const Header = ({
                         </FormControl>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={handleClose}>Save</Button>
+                        <Button onClick={handleClose}>Close</Button>
                     </DialogActions>
                 </Dialog>
             </Toolbar>

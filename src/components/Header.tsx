@@ -32,7 +32,7 @@ interface Props {
 
 // const Header = ({ setSearchTerm, sortingDirection }: Props) => {
 const Header = ({
-    setSearchTerm,
+    searchTerm: [searchTerm, setSearchTerm],
     orderBy: [orderBy, setOrderBy],
     sortingDirection: [sortingDirection, setSortingDirection],
     pageSize,
@@ -67,6 +67,7 @@ const Header = ({
                     </SearchIconWrapper>
                     <StyledInputBase
                         placeholder="Search…"
+                        value={searchTerm}
                         inputProps={{ 'aria-label': 'search' }}
                         onChange={handleChange}
                     />

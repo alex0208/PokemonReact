@@ -25,13 +25,14 @@ import { POKEMON_QUERY } from '../graphql/queries/pokemon';
 import Header from '../components/Header';
 import { SORTING_DIRECTION } from '../common/constants/sort';
 import { order_by } from '../graphql/generated/globalTypes';
+import useLocalStorage from '../common/hooks/useLocalStorage';
 
 const PokemonCatalog: FC<RouteComponentProps> = () => {
-    const [pageSize, setPageSize] = useState(20);
+    const [pageSize, setPageSize] = useLocalStorage('pageSize', 20);
     const [currentPage, setCurrrentPage] = useState(1);
-    const [searchTerm, setSearchTerm] = useState('');
-    const orderBy = useState(SORTING_DIRECTION.NAME);
-    const sortingDirection = useState(order_by.asc);
+    const searchTerm = useLocalStorage('searchTerm', '');
+    const orderBy = useLocalStorage('orderBy', SORTING_DIRECTION.NAME);
+    const sortingDirection = useLocalStorage('sortingDirections', order_by.asc);
 
     const [getData, { data, loading }] = useLazyQuery<
         PokemonQuery,
@@ -40,7 +41,7 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
         variables: {
             limit: pageSize,
             offset: pageSize * (currentPage - 1),
-            _ilike: `${searchTerm}%`,
+            _ilike: `${searchTerm[0]}%`,
             // order_by: JSON.parse('{"height": "asc"}'),
             order_by: JSON.parse(`{"${orderBy[0]}": "${sortingDirection[0]}"}`),
         },
@@ -57,7 +58,7 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
 
     useEffect(() => {
         setCurrrentPage(1);
-    }, [searchTerm]);
+    }, [searchTerm[0]]);
 
     useEffect(() => {
         console.log(sortingDirection[0]);
@@ -66,7 +67,7 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
     return (
         <>
             <Header
-                setSearchTerm={setSearchTerm}
+                searchTerm={searchTerm}
                 // sortingDirection={sortingDirection}
                 orderBy={orderBy}
                 sortingDirection={sortingDirection}
@@ -93,15 +94,7 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
                 {data &&
                     Array.from(data.pokemon_v2_pokemon).map(
                         (pokemon, index) => (
-                            <Grid
-                                item
-                                // spacing={5}
-                                xs={6}
-                                sm={4}
-                                md={3}
-                                lg={2}
-                                key={index}
-                            >
+                            <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
                                 <PokemonCard
                                     {...pokemon}
                                     // id={pokemon.id}

@@ -11,6 +11,8 @@ import {
     CardContent,
     CardMedia,
     Pagination,
+    Box,
+    CircularProgress,
 } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
@@ -26,6 +28,7 @@ import Header from '../components/Header';
 import { SORTING_DIRECTION } from '../common/constants/sort';
 import { order_by } from '../graphql/generated/globalTypes';
 import useLocalStorage from '../common/hooks/useLocalStorage';
+import { styled } from '@mui/system';
 
 const PokemonCatalog: FC<RouteComponentProps> = () => {
     const [pageSize, setPageSize] = useLocalStorage('pageSize', 20);
@@ -82,24 +85,25 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
                 page={currentPage}
                 onChange={handlePageChange}
             />
+
+            {loading ? (
+                <Spinner>
+                    <CircularProgress />
+                </Spinner>
+            ) : null}
+
             <Grid
                 container
                 alignItems="center"
                 justifyContent="flex-start"
                 spacing={3}
                 px={3}
-                // spacing={{ xs: 2, md: 3 }}
-                // columns={{ xs: 4, sm: 8, md: 12 }}
             >
                 {data &&
                     Array.from(data.pokemon_v2_pokemon).map(
                         (pokemon, index) => (
                             <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
-                                <PokemonCard
-                                    {...pokemon}
-                                    // id={pokemon.id}
-                                    // name={pokemon.name}
-                                />
+                                <PokemonCard {...pokemon} />
                             </Grid>
                         )
                     )}
@@ -115,5 +119,11 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
         </>
     );
 };
+
+const Spinner = styled(Box)({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+});
 
 export default PokemonCatalog;

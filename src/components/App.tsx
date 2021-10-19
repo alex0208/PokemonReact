@@ -1,6 +1,5 @@
 import { ApolloProvider } from '@apollo/client';
-import { useApollo } from './graphql/apollo';
-import Deck from './Deck';
+import { useApollo } from '../graphql/apollo';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
     AppBar,
@@ -11,8 +10,8 @@ import {
     // MenuIcon,
 } from '@mui/material';
 import { Route, Switch } from 'react-router';
-import PokemonCatalog from './routes/PokemonCatalog';
-import PokemonDetailPage from './routes/PokemonDetailPage';
+import PokemonCatalog from '../routes/PokemonCatalog';
+import PokemonDetailPage from '../routes/PokemonDetailPage';
 
 function App() {
     const client = useApollo();

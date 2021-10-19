@@ -22,13 +22,7 @@ interface Props {
     pokemon_v2_pokemonabilities: PokemonQuery_pokemon_v2_pokemon_pokemon_v2_pokemonabilities[];
 }
 
-const PokemonCard = ({
-    id = 5,
-    name = 'Pokemon',
-    weight,
-    height,
-    pokemon_v2_pokemonabilities: abilities,
-}: Props) => {
+const PokemonCard = ({ id = 5, name = 'Pokemon', weight, height, pokemon_v2_pokemonabilities: abilities }: Props) => {
     return (
         <PCard sx={{ maxWidth: 345 }}>
             <CardActionArea
@@ -46,33 +40,17 @@ const PokemonCard = ({
                     <Typography gutterBottom variant="h4" component="div">
                         {capitalize(name)}
                     </Typography>
-                    <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        component="div"
-                    >
+                    <Typography variant="body1" color="text.secondary" component="div">
                         Height:
                         <AttributeValue>{height}</AttributeValue>
                     </Typography>
-                    <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        component="div"
-                    >
+                    <Typography variant="body1" color="text.secondary" component="div">
                         Weight:
                         <AttributeValue>{weight}</AttributeValue>
                     </Typography>
-                    <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        component="div"
-                    >
+                    <Typography variant="body1" color="text.secondary" component="div">
                         Abilities:
-                        <AttributeValue>
-                            {abilities
-                                .map((a) => a.pokemon_v2_ability?.name)
-                                .join(', ')}
-                        </AttributeValue>
+                        <AttributeValue>{abilities.map((a) => a.pokemon_v2_ability?.name).join(', ')}</AttributeValue>
                     </Typography>
                 </CardContent>
             </CardActionArea>

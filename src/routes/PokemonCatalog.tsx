@@ -1,4 +1,4 @@
-import { Grid, Box, CircularProgress, Skeleton } from '@mui/material';
+import { Grid, Box, CircularProgress, Skeleton, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import PokemonCard from '../components/PokemonCard';
 import { useLazyQuery } from '@apollo/client';
@@ -53,6 +53,13 @@ const PokemonCatalog = () => {
                 </Spinner>
             ) : null}
 
+            {data?.pokemon_v2_pokemon.length === 0 ? (
+                <Box display="flex" justifyContent="center" alignItems="center" minHeight="80vh">
+                    <Typography variant="body1" color="text.secondary" component="div">
+                        No results found.
+                    </Typography>
+                </Box>
+            ) : null}
             {
                 <Grid container alignItems="center" justifyContent="flex-start" spacing={3} px={3}>
                     {data

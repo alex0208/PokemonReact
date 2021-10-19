@@ -13,17 +13,17 @@ import {
     Pagination,
     Box,
     CircularProgress,
+    Skeleton,
 } from '@mui/material';
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router';
-import Deck from '../Deck';
 import PokemonCard from '../components/PokemonCard';
 import { useLazyQuery } from '@apollo/client';
 import {
     PokemonQuery,
     PokemonQueryVariables,
 } from '../graphql/generated/PokemonQuery';
-import { POKEMON_QUERY } from '../graphql/queries/pokemon';
+import { POKEMON_QUERY } from '../graphql/queries/pokemons';
 import Header from '../components/Header';
 import { SORTING_DIRECTION } from '../common/constants/sort';
 import { order_by } from '../graphql/generated/globalTypes';
@@ -52,6 +52,7 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
 
     const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
         setCurrrentPage(value);
+        window.scrollTo(0, 0);
     };
 
     useEffect(() => {
@@ -92,22 +93,50 @@ const PokemonCatalog: FC<RouteComponentProps> = () => {
                 </Spinner>
             ) : null}
 
-            <Grid
-                container
-                alignItems="center"
-                justifyContent="flex-start"
-                spacing={3}
-                px={3}
-            >
-                {data &&
-                    Array.from(data.pokemon_v2_pokemon).map(
-                        (pokemon, index) => (
-                            <Grid item xs={6} sm={6} md={4} lg={3} key={index}>
-                                <PokemonCard {...pokemon} />
-                            </Grid>
-                        )
-                    )}
-            </Grid>
+            {
+                <Grid
+                    container
+                    alignItems="center"
+                    justifyContent="flex-start"
+                    spacing={3}
+                    px={3}
+                >
+                    {data
+                        ? Array.from(data?.pokemon_v2_pokemon).map(
+                              (pokemon, index) => (
+                                  <Grid
+                                      item
+                                      xs={6}
+                                      sm={6}
+                                      md={4}
+                                      lg={3}
+                                      key={index}
+                                  >
+                                      <PokemonCard {...pokemon} />
+                                  </Grid>
+                              )
+                          )
+                        : [...Array(pageSize)].map((n, index) => (
+                              <Grid
+                                  item
+                                  xs={6}
+                                  sm={6}
+                                  md={4}
+                                  lg={3}
+                                  key={index}
+                              >
+                                  <Skeleton
+                                      variant="rectangular"
+                                      height={250}
+                                  />
+                                  <Skeleton variant="text" height={100} />
+                                  <Skeleton width="60%" height={25} />
+                                  <Skeleton width="60%" />
+                                  <Skeleton width="60%" />
+                              </Grid>
+                          ))}
+                </Grid>
+            }
             <Typography>Page: {currentPage}</Typography>
             <Pagination
                 count={currentPage + 2}
